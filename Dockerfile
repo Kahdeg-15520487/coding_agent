@@ -18,4 +18,4 @@ EXPOSE 4096
 ENV OPENCODE_SERVER_HOSTNAME=0.0.0.0
 ENV OPENCODE_SERVER_PORT=4096
 
-CMD ["opencode", "web"]
+CMD ["opencode", "web", "--hostname", "0.0.0.0", "--port", "4096"]
