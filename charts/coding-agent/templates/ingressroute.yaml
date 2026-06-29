@@ -12,7 +12,6 @@ spec:
     - kind: Rule
       match: Host(`{{ .Values.domain }}`)
       middlewares:
-        - name: strip-auth-header
         - name: authelia-forwardauth
       services:
         - name: {{ .Release.Name }}
