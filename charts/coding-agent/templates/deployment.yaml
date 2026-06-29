@@ -1,0 +1,39 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ .Release.Name }}
+  labels:
+    app.kubernetes.io/name: {{ .Chart.Name }}
+    app.kubernetes.io/instance: {{ .Release.Name }}
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: {{ .Release.Name }}
+  template:
+    metadata:
+      labels:
+        app: {{ .Release.Name }}
+    spec:
+      containers:
+        - name: opencode
+          image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
+          imagePullPolicy: {{ .Values.image.pullPolicy }}
+          ports:
+            - containerPort: 4096
+              name: http
+          env:
+            - name: OPENCODE_SERVER_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: {{ .Release.Name }}-secret
+                  key: server-password
+          volumeMounts:
+            - name: workspace
+              mountPath: /workspace
+          resources:
+            {{- toYaml .Values.resources | nindent 12 }}
+      volumes:
+        - name: workspace
+          persistentVolumeClaim:
+            claimName: {{ .Release.Name }}-workspace

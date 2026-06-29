@@ -1,0 +1,4 @@
+apiVersion: v2
+name: coding-agent
+description: OpenCode web server
+version: 0.1.0

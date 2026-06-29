@@ -1,0 +1,22 @@
+# -- Docker image
+image:
+  repository: ghcr.io/kahdeg-15520487/coding_agent
+  tag: latest
+  pullPolicy: Always
+
+# -- Domain for Traefik IngressRoute
+domain: opencode.minhnguyenle.net
+
+# -- Resource requests and limits
+resources:
+  requests:
+    memory: "512Mi"
+    cpu: "500m"
+  limits:
+    memory: "4Gi"
+    cpu: "4"
+
+# -- Persistent workspace storage
+persistence:
+  size: 20Gi
+  storageClass: ""
