@@ -7,9 +7,16 @@ metadata:
     app.kubernetes.io/instance: {{ .Release.Name }}
 spec:
   forwardAuth:
-    address: http://authelia.authelia.svc.homelab.cluster:9091/api/authz/auth-request
+    address: http://authelia.authelia.svc.homelab.cluster:9091/api/authz/forward-auth
     authResponseHeaders:
       - Remote-User
       - Remote-Groups
       - Remote-Email
       - Remote-Name
+    authRequestHeaders:
+      - Cookie
+      - X-Forwarded-Proto
+      - X-Forwarded-Host
+      - X-Forwarded-URI
+      - X-Forwarded-Method
+      - X-Original-URL
