@@ -30,4 +30,4 @@ jobs:
         with:
           context: .
           push: true
-          tags: ${{ env.REGISTRY }}/${{ github.repository_owner }}/coding_agent:latest
+          tags: ${{ env.REGISTRY }}/kahdeg-15520487/coding_agent:latest
